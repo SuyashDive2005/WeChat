@@ -9,9 +9,7 @@
 ![License](https://img.shields.io/badge/License-ISC-yellow?style=flat-square)
 [![GitHub Stars](https://img.shields.io/github/stars/Its-Shinde4241/Chatting-Messaging--Website?style=flat-square)](https://github.com/Its-Shinde4241/Chatting-Messaging--Website)
 
-**A real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.**
-
-[🚀 Live Demo](#-live-demo) • [📖 Get Started](#-quick-start) • [🛠️ Tech Stack](#-tech-stack) • [🤝 Contributing](#-contributing)
+**WeChat a real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.**
 
 </div>
 
