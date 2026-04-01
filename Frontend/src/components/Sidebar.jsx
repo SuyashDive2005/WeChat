@@ -78,6 +78,21 @@ export default function Sidebar() {
                   src={user.profilePic || "/avatar.png"}
                   alt={user.fullName}
                   className="size-10 lg:size-12 object-cover rounded-full"
+                  onError={(e) => {
+                    console.log(
+                      `❌ Sidebar Avatar Error for ${user.fullName}:`,
+                      e.target.src,
+                    );
+                    console.log(`📊 User profilePic value:`, user.profilePic);
+                    e.target.src = "/avatar.png";
+                  }}
+                  onLoad={() => {
+                    if (user.profilePic) {
+                      console.log(
+                        `✅ Sidebar Avatar Loaded for ${user.fullName}`,
+                      );
+                    }
+                  }}
                 />
                 {onlineUsers.includes(user._id) && (
                   <span className="absolute bottom-0 right-0 size-3 lg:size-3.5 bg-green-500 rounded-full ring-2 ring-white" />

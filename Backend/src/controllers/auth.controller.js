@@ -111,24 +111,51 @@ export const updateProfile = async (req, res) => {
   try {
     const { profilePic } = req.body;
     const userId = req.user._id;
+
+    console.log("📸 Update Profile Request - UserId:", userId);
+    console.log(
+      "📸 Received profilePic:",
+      profilePic ? `${profilePic.substring(0, 50)}...` : "null",
+    );
+
     if (!profilePic) {
-      return res.status(400).json({ message: "Profile Picture Requred " });
+      return res.status(400).json({ message: "Profile Picture Required" });
     }
 
-    const uploadResponse = await cloudinary.uploader.upload(profilePic);
-    const updatedUser = await prisma.user.update({
-      where: { id: userId },
-      data: { profilePic: uploadResponse.secure_url },
-    });
+    try {
+      console.log("🚀 Uploading to Cloudinary...");
+      const uploadResponse = await cloudinary.uploader.upload(profilePic, {
+        resource_type: "auto", // Auto-detect resource type
+      });
+      console.log("✅ Cloudinary Upload Success:", uploadResponse.secure_url);
 
-    const { password: _password, ...safeUser } = updatedUser;
-    res.status(200).json({
-      ...safeUser,
-      _id: safeUser.id,
-    });
+      const updatedUser = await prisma.user.update({
+        where: { id: userId },
+        data: { profilePic: uploadResponse.secure_url },
+      });
+
+      console.log("✅ Database Updated:", updatedUser.profilePic);
+
+      const { password: _password, ...safeUser } = updatedUser;
+      res.status(200).json({
+        ...safeUser,
+        _id: safeUser.id,
+      });
+    } catch (uploadError) {
+      console.error("❌ Cloudinary Upload Error:", {
+        message: uploadError.message,
+        status: uploadError.status,
+        http_code: uploadError.http_code,
+      });
+      throw uploadError;
+    }
   } catch (error) {
-    console.log("Error in Update Profile in controller");
-    res.status(500).json({ message: "Internal Server Error " });
+    console.error("❌ Error in Update Profile:", error.message || error);
+    res.status(500).json({
+      message: "Internal Server Error",
+      details:
+        process.env.NODE_ENV === "development" ? error.message : undefined,
+    });
   }
 };
 

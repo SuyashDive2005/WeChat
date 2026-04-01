@@ -19,6 +19,13 @@ export const getUserForSidebar = async (req, res) => {
       },
     });
 
+    console.log(`📋 Sidebar Users Count: ${filteredUsers.length}`);
+    filteredUsers.forEach((user, idx) => {
+      console.log(
+        `  User ${idx + 1}: ${user.fullName} - ProfilePic: ${user.profilePic ? "✓ Present" : "✗ Missing"}`,
+      );
+    });
+
     const usersWithMongoShape = filteredUsers.map((user) => ({
       ...user,
       _id: user.id,
@@ -26,7 +33,7 @@ export const getUserForSidebar = async (req, res) => {
 
     res.status(200).json(usersWithMongoShape);
   } catch (error) {
-    console.log("Error in getUserForSodebar :", error.message);
+    console.error("Error in getUserForSidebar:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };

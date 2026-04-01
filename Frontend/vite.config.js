@@ -5,19 +5,13 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
+    port: 5173,
     proxy: {
       "/api": {
         target: "http://localhost:5000",
         changeOrigin: true,
         credentials: true,
-        headers: {
-          "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
-        },
       },
-    },
-    headers: {
-      "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
-      "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
 });

@@ -50,6 +50,20 @@ const ProfilePage = () => {
                 src={selectedImg || authUser.profilePic || "/avatar.png"}
                 alt="Profile"
                 className="size-36 rounded-full object-cover border-4 border-white/40 shadow-md"
+                onError={(e) => {
+                  console.log(
+                    "❌ Image Load Error - Current src:",
+                    e.target.src,
+                  );
+                  console.log("📊 Auth User profilePic:", authUser?.profilePic);
+                  e.target.src = "/avatar.png";
+                }}
+                onLoad={() => {
+                  console.log(
+                    "✅ Image Loaded Successfully:",
+                    selectedImg || authUser.profilePic,
+                  );
+                }}
               />
               <label
                 htmlFor="avatar-upload"

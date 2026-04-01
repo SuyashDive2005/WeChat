@@ -21,10 +21,13 @@ const projectRoot = path.join(__dirname, "..");
 app.use(express.json({ limit: "50mb" })); // Increase limit to 50MB
 app.use(cookieParser());
 
-// Security headers BEFORE CORS
+// Security headers BEFORE CORS (Development-friendly)
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
+  // Don't set COEP in development - allows Cloudinary images
+  if (process.env.NODE_ENV === "production") {
+    res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  }
   next();
 });
 

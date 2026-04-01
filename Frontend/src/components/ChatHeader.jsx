@@ -14,6 +14,25 @@ export default function ChatHeader() {
               src={selectedUser.profilePic || "/avatar.png"}
               alt={selectedUser.fullName}
               className="size-10 rounded-full object-cover"
+              onError={(e) => {
+                console.log(
+                  "❌ Chat Avatar Load Error - Current src:",
+                  e.target.src,
+                );
+                console.log(
+                  "📊 Selected User profilePic:",
+                  selectedUser?.profilePic,
+                );
+                e.target.src = "/avatar.png";
+              }}
+              onLoad={() => {
+                if (selectedUser.profilePic) {
+                  console.log(
+                    "✅ Chat Avatar Loaded:",
+                    selectedUser.profilePic,
+                  );
+                }
+              }}
             />
             {onlineUsers.includes(selectedUser._id) && (
               <span className="absolute bottom-0 right-0 size-2.5 bg-accent-mint rounded-full ring-2 ring-white"></span>
