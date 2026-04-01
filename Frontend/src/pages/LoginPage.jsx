@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Mail, MessageCircle, Lock, EyeOff, Eye, Loader2 } from "lucide-react";
+import { Mail, Lock, EyeOff, Eye, Loader2 } from "lucide-react";
 import styles from "./SignUpPage.module.css";
 import { Link } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
@@ -45,18 +45,37 @@ const LoginPage = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
-              <div className="size-12 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center group-hover:from-primary-200 group-hover:to-primary-300 transition-all shadow-sm">
-                <MessageCircle className="size-6 text-primary-600" />
-              </div>
-              <h1 className="text-2xl font-bold mt-2 text-text-dark">
-                Sign In
-              </h1>
-              <p className="text-text-light">
-                Join Now and Elevate Your Experience. Your Free Account is Just
-                a Click Away!
-              </p>
+              <img
+                src="/WeChat-Logo.png"
+                alt="WeChat Logo"
+                className="size-16 rounded-lg group-hover:scale-110 transition-transform shadow-sm"
+              />
             </div>
           </div>
+
+          {/* Google OAuth - Moved to Top */}
+          {hasGoogleOauth && (
+            <div className="space-y-3">
+              <div className="flex flex-col items-center gap-2">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={() => {}}
+                  text="signin_with"
+                  shape="pill"
+                  size="large"
+                />
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-primary-200" />
+                <span className="text-sm text-text-light">
+                  or continue with email
+                </span>
+                <div className="h-px flex-1 bg-primary-200" />
+              </div>
+            </div>
+          )}
+
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-text-dark mb-2">
@@ -142,20 +161,9 @@ const LoginPage = () => {
               <div className="flex items-center gap-3">
                 <div className="h-px flex-1 bg-primary-200" />
                 <span className="text-sm text-text-light">
-                  or continue with
+                  Don&apos;t have an account?
                 </span>
                 <div className="h-px flex-1 bg-primary-200" />
-              </div>
-
-              <div className="flex flex-col items-center gap-2">
-                <p className="text-sm font-medium text-text-medium">Google</p>
-                <GoogleLogin
-                  onSuccess={handleGoogleSuccess}
-                  onError={() => {}}
-                  text="signin_with"
-                  shape="pill"
-                  size="large"
-                />
               </div>
             </div>
           )}
@@ -164,7 +172,7 @@ const LoginPage = () => {
 
       {/* Right Side */}
       <AuthImagePattern
-        title="Welcomne Back!"
+        title="Welcome Back!"
         subtitle="Sign in to continue conversations and catch up with your messages"
       />
     </div>

@@ -20,15 +20,41 @@ const projectRoot = path.join(__dirname, "..");
 
 app.use(express.json({ limit: "50mb" })); // Increase limit to 50MB
 app.use(cookieParser());
+
+// Security headers BEFORE CORS
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "credentialless");
+  next();
+});
+
+// CORS Configuration with proper headers for Google Sign-In
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://127.0.0.1:5173",
+      "http://127.0.0.1:5174",
+    ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
   }),
 );
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error("Server Error:", err);
+  res.status(err.status || 500).json({
+    message: err.message || "Internal Server Error",
+    ...(process.env.NODE_ENV === "development" && { error: err.stack }),
+  });
+});
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(projectRoot, "../Frontend/dist")));

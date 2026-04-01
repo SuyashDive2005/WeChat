@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import {
-  Mail,
-  User,
-  Lock,
-  EyeOff,
-  Eye,
-  Loader2,
-  MessageCircle,
-} from "lucide-react";
+import { Mail, User, Lock, EyeOff, Eye, Loader2 } from "lucide-react";
 import styles from "./SignUpPage.module.css";
 import { Link } from "react-router-dom";
 import AuthImagePattern from "../components/AuthImagePattern";
@@ -69,9 +61,11 @@ const SignUpPage = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
-              <div className="size-12 rounded-xl bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center group-hover:from-primary-200 group-hover:to-primary-300 transition-all shadow-sm">
-                <MessageCircle className="size-6 text-primary-600" />
-              </div>
+              <img
+                src="/WeChat-Logo.png"
+                alt="WeChat Logo"
+                className="size-12 rounded-lg group-hover:scale-110 transition-transform shadow-sm"
+              />
               <h1 className="text-2xl font-bold mt-2 text-text-dark">
                 Create Account
               </h1>
@@ -80,6 +74,33 @@ const SignUpPage = () => {
               </p>
             </div>
           </div>
+
+          {/* Google OAuth - Moved to Top */}
+          {hasGoogleOauth && (
+            <div className="space-y-3">
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm font-medium text-text-medium">
+                  Sign Up with Google
+                </p>
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={() => {}}
+                  text="signup_with"
+                  shape="pill"
+                  size="large"
+                />
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="h-px flex-1 bg-primary-200" />
+                <span className="text-sm text-text-light">
+                  or continue with email
+                </span>
+                <div className="h-px flex-1 bg-primary-200" />
+              </div>
+            </div>
+          )}
+
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-text-dark mb-2">
@@ -168,6 +189,7 @@ const SignUpPage = () => {
               )}
             </button>
           </form>
+
           <div className="text-center">
             <p className="text-text-medium">
               Already have an account ?{" "}
@@ -179,29 +201,6 @@ const SignUpPage = () => {
               </Link>
             </p>
           </div>
-
-          {hasGoogleOauth && (
-            <div className="pt-2 space-y-3">
-              <div className="flex items-center gap-3">
-                <div className="h-px flex-1 bg-primary-200" />
-                <span className="text-sm text-text-light">
-                  or continue with
-                </span>
-                <div className="h-px flex-1 bg-primary-200" />
-              </div>
-
-              <div className="flex flex-col items-center gap-2">
-                <p className="text-sm font-medium text-text-medium">Google</p>
-                <GoogleLogin
-                  onSuccess={handleGoogleSuccess}
-                  onError={() => {}}
-                  text="signup_with"
-                  shape="pill"
-                  size="large"
-                />
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
