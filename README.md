@@ -39,9 +39,7 @@ WeChat a real-time chat application that enables seamless end-to-end communicati
 - **Dark Theme** - Eye-friendly dark mode with gradient accents
 - **Smooth Animations** - Professional transitions and loading states
 - **Accessibility** - WCAG 2.1 compliant components
--
-
----
+- ***
 
 ## 🛠️ Tech Stack
 
