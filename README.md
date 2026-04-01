@@ -1,33 +1,9 @@
 # 💬 WeChat - Real-Time Chat Application
 
 <div align="center">
-
-![WeChat](https://img.shields.io/badge/WeChat-v1.0.0-blue?style=flat-square&logo=wechat)
-![React](https://img.shields.io/badge/React-18.3-61dafb?style=flat-square&logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js)
-![MySQL](https://img.shields.io/badge/MySQL-8.0+-00758f?style=flat-square&logo=mysql)
-![License](https://img.shields.io/badge/License-ISC-yellow?style=flat-square)
-[![GitHub Stars](https://img.shields.io/github/stars/Its-Shinde4241/Chatting-Messaging--Website?style=flat-square)](https://github.com/Its-Shinde4241/Chatting-Messaging--Website)
-
-**WeChat a real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.**
+WeChat a real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.**
 
 </div>
-
----
-
-## 🎯 Overview
-
-**WeChat** is a full-stack, real-time chat application that enables seamless communication between users with advanced features like instant messaging, live online/offline presence tracking, and enterprise-grade security. Built with cutting-edge technologies, it demonstrates professional development practices focused on scalability, performance, and user experience.
-
-Whether you're looking to build a messaging platform, learn full-stack development, or showcase your skills in a portfolio, WeChat provides the perfect foundation with production-ready code and comprehensive documentation.
-
-### 🎓 Perfect For:
-
-- 💼 Full-stack development portfolio projects
-- 🎓 Learning Node.js, React, and real-time communication
-- 🚀 Building scalable messaging platforms
-- 📱 Understanding real-world application architecture
-- 🔐 Mastering modern authentication and security patterns
 
 ---
 
@@ -51,20 +27,10 @@ Whether you're looking to build a messaging platform, learn full-stack developme
 
 ### 🔐 Secure Authentication
 
-- **End-to-End Encryption** - Secure message transmission protocol
-- **Password Security** - bcryptjs hashing with 10 salt rounds
 - **JWT Authentication** - Stateless, token-based session management
 - **Google OAuth 2.0** - Secure third-party authentication
 - **Protected Routes** - Authorization middleware on all sensitive endpoints
 - **Session Security** - HttpOnly cookies with secure flags
-
-### 👤 User Management & Profiles
-
-- **Profile Customization** - Upload and manage profile pictures via Cloudinary
-- **User Search** - Lightning-fast user discovery with live search
-- **Account Settings** - Personalized preferences and theme customization
-- **Privacy Controls** - Manage who can contact you
-- **User Relationships** - Track conversations and contacts
 
 ### 🎨 Beautiful User Experience
 
@@ -73,15 +39,7 @@ Whether you're looking to build a messaging platform, learn full-stack developme
 - **Dark Theme** - Eye-friendly dark mode with gradient accents
 - **Smooth Animations** - Professional transitions and loading states
 - **Accessibility** - WCAG 2.1 compliant components
-
-### ⚡ Enterprise-Grade Performance
-
-- **Scalable Architecture** - Modular React components for easy maintenance
-- **State Management** - Zustand for lightweight, efficient state handling
-- **Optimized Performance** - Code splitting, lazy loading, and caching
-- **Database Optimization** - Indexed queries and efficient relations
-- **Production Ready** - Deployment-ready with monitoring and logging
-
+- 
 ---
 
 ## 🛠️ Tech Stack
@@ -111,7 +69,6 @@ Whether you're looking to build a messaging platform, learn full-stack developme
 | **ORM**       | Prisma          | 6.18+   | Next-gen database ORM         |
 | **Database**  | MySQL           | 8.0+    | Relational database           |
 | **Auth**      | JWT             | 9.0+    | Secure token authentication   |
-| **Security**  | Bcryptjs        | 2.4+    | Password hashing              |
 | **Image**     | Cloudinary      | 2.5+    | Cloud image hosting           |
 | **OAuth**     | Google Auth Lib | 10.6+   | Google authentication         |
 | **CORS**      | cors            | 2.8+    | Cross-origin resource sharing |
@@ -121,31 +78,31 @@ Whether you're looking to build a messaging platform, learn full-stack developme
 ## 📊 Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     WeChat Application                      │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
+┌───────────────────────────────────────────────────────────┐
+│                     WeChat Application                    │
+├───────────────────────────────────────────────────────────┤
+│                                                           │
 │  ┌──────────────────┐          ┌─────────────────────┐    │
 │  │   React Frontend │◄────────►│  Express Backend    │    │
 │  │   (Vite Build)   │          │  (Socket.io Server) │    │
 │  └──────────────────┘          └─────────────────────┘    │
-│         │ Components               │ Controllers            │
-│         ├─ Navbar                  ├─ Auth Routes          │
-│         ├─ Sidebar                 ├─ Message Routes       │
-│         ├─ ChatContainer           └─ Socket Handlers      │
-│         └─ ProfilePage                                      │
-│                                                             │
+│         │ Components               │ Controllers          │
+│         ├─ Navbar                  ├─ Auth Routes         │
+│         ├─ Sidebar                 ├─ Message Routes      │
+│         ├─ ChatContainer           └─ Socket Handlers     │
+│         └─ ProfilePage                                    │
+│                                                           │
 │  ┌──────────────────────────────────────────────────┐     │
 │  │            MySQL Database (Prisma ORM)           │     │
 │  ├──────────────────────────────────────────────────┤     │
 │  │ Users Table  │  Messages Table  │  Relationships │     │
 │  └──────────────────────────────────────────────────┘     │
-│                                                             │
+│                                                           │
 │  ┌──────────────────────────┐   ┌──────────────────┐      │
 │  │  Cloudinary (Images)     │   │ Google OAuth 2.0 │      │
 │  └──────────────────────────┘   └──────────────────┘      │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+│                                                           │
+└───────────────────────────────────────────────────────────┘
 ```
 
 ---
