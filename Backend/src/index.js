@@ -5,6 +5,7 @@ import cors from "cors";
 
 import path from "path";
 import { fileURLToPath } from "url";
+import fs from "fs";
 
 import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
@@ -45,7 +46,26 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// Error handling middleware
+if (
+  process.env.NODE_ENV === "production" &&
+  process.env.SERVE_FRONTEND === "true"
+) {
+  const frontendDistPath = path.join(projectRoot, "../Frontend/dist");
+  const frontendIndexPath = path.join(frontendDistPath, "index.html");
+
+  if (!fs.existsSync(frontendIndexPath)) {
+    throw new Error(
+      `SERVE_FRONTEND=true but frontend build not found at: ${frontendIndexPath}`,
+    );
+  }
+
+  app.use(express.static(frontendDistPath));
+  app.get("*", (req, res) => {
+    res.sendFile(frontendIndexPath);
+  });
+}
+
+// Error handling middleware (keep last)
 app.use((err, req, res, next) => {
   console.error("Server Error:", err);
   res.status(err.status || 500).json({
@@ -53,14 +73,6 @@ app.use((err, req, res, next) => {
     ...(process.env.NODE_ENV === "development" && { error: err.stack }),
   });
 });
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(projectRoot, "../Frontend/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(projectRoot, "../Frontend", "dist", "index.html"));
-  });
-}
 
 server.listen(PORT, () => {
   console.log("server is running on port:" + PORT);

@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
-const BASE_URL = "https://wechat-vvru.onrender.com";
+const BASE_URL = "https://wechat-qs2z.onrender.com";
 
 const getErrorMessage = (error, fallbackMessage) => {
   return error?.response?.data?.message || fallbackMessage;
