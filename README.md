@@ -1,7 +1,7 @@
 # 💬 WeChat - Real-Time Chat Application
 
 <div align="center">
-WeChat a real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.**
+WeChat a real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.
 
 </div>
 
