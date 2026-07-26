@@ -1,4 +1,4 @@
-# 💬 TaklMate - Real-Time Chat Application
+# 💬 TalkMate - Real-Time Chat Application
 
 <div align="center">
 TalkMate a real-time chat application that enables seamless end-to-end communication with online users, featuring instant messaging, live presence tracking, and secure authentication. Built with modern web technologies for production-ready performance.
