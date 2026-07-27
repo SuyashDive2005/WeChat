@@ -11,6 +11,7 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 import { connectDB } from "./lib/db.js";
 import { app, server } from "./lib/socket.js";
+import { corsOrigin } from "./config/cors.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,7 +36,7 @@ app.use((req, res, next) => {
 // CORS Configuration with proper headers for Google Sign-In
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: corsOrigin,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -46,23 +47,23 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-if (
-  process.env.NODE_ENV === "production" &&
-  process.env.SERVE_FRONTEND === "true"
-) {
+if (process.env.NODE_ENV === "production") {
   const frontendDistPath = path.join(projectRoot, "../Frontend/dist");
   const frontendIndexPath = path.join(frontendDistPath, "index.html");
 
-  if (!fs.existsSync(frontendIndexPath)) {
-    throw new Error(
-      `SERVE_FRONTEND=true but frontend build not found at: ${frontendIndexPath}`,
+  if (fs.existsSync(frontendIndexPath)) {
+    app.use(express.static(frontendDistPath));
+
+    app.get("*", (req, res) => {
+      res.sendFile(frontendIndexPath);
+    });
+  } else {
+    console.warn(
+      "Frontend build not found at:",
+      frontendIndexPath,
+      "— skipping static frontend hosting.",
     );
   }
-
-  app.use(express.static(frontendDistPath));
-  app.get("*", (req, res) => {
-    res.sendFile(frontendIndexPath);
-  });
 }
 
 // Error handling middleware (keep last)

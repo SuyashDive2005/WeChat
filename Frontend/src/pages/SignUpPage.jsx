@@ -62,8 +62,8 @@ const SignUpPage = () => {
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <img
-                src="/WeChat-Logo.png"
-                alt="WeChat Logo"
+                src="/TalkMate-Logo.png"
+                alt="TalkMate Logo"
                 className="size-12 rounded-lg group-hover:scale-110 transition-transform shadow-sm"
               />
               <h1 className="text-2xl font-bold mt-2 text-text-dark">

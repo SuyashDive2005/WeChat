@@ -10,15 +10,15 @@ export default function NoChatSelected() {
         {/* Logo Display */}
         <div className="flex justify-center mb-6">
           <img
-            src="/WeChat-Logo.png"
-            alt="WeChat"
+            src="/TalkMate-Logo.png"
+            alt="TalkMate"
             className="w-28 h-28 lg:w-32 lg:h-32 drop-shadow-xl opacity-90"
           />
         </div>
         {/* Welcome Text */}
         <div className="space-y-3">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-700">
-            Welcome to WeChat
+            Welcome to TalkMate
           </h2>
           <p className="text-gray-600 text-base lg:text-lg leading-relaxed">
             Select a Conversation from the sidebar to start chatting.

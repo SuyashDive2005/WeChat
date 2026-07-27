@@ -78,7 +78,7 @@ TalkMate a real-time chat application that enables seamless end-to-end communica
 
 ```
 ┌───────────────────────────────────────────────────────────┐
-│                     WeChat Application                    │
+│                    TalkMate Application                   │
 ├───────────────────────────────────────────────────────────┤
 │                                                           │
 │  ┌──────────────────┐          ┌─────────────────────┐    │
@@ -109,7 +109,7 @@ TalkMate a real-time chat application that enables seamless end-to-end communica
 ## 📁 Project Structure
 
 ```
-WeChat/
+TalkMate/
 │
 ├── Frontend/
 │   ├── src/

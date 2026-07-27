@@ -14,8 +14,8 @@ const Navbar = () => {
             to="/"
             className="flex items-center gap-2.5 hover:opacity-90 transition-all"
           >
-            <img src="/WeChat-Logo.png" alt="WeChat" className="w-14 h-14" />
-            <h1 className="text-xl font-bold text-white">WeChat</h1>
+            <img src="/TalkMate-Logo.png" alt="TalkMate" className="w-14 h-14" />
+            <h1 className="text-xl font-bold text-white">TalkMate</h1>
           </Link>
 
           {/* Right Section - Profile and Logout */}
